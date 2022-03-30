@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: dov-pod
+ labels:
+  name: dov-pod
+  dept: engg 
+# namespace: myNS -- if not defined now, have to define later.
+spec: 
+ containers:
+ - name: dov-container
+   image: stackupiss/dov-bear:v2
+   imagePullPolicy: IfNotPresent
+   ports: 
+   - containerPort: 3000
+
+
+
+#cannot use tabs in yaml file
+#apiVersion -- if "core", don't have to enter
+#else apiVersion: test/v1
+#all resources must be labeled
