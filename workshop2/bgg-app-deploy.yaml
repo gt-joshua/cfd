@@ -2,6 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
+ namespace: bggns
  name: bggapp-deploy
  labels:
   name: bggapp-deploy
@@ -9,7 +10,7 @@ spec:
  replicas: 3
  selector: 
   matchLabels:
-   name: bgg-app-po
+   name: bggapp-po
  strategy:
   type: RollingUpdate
   rollingUpdate:
@@ -17,14 +18,18 @@ spec:
    maxUnavailable: 0
  template:
   metadata:
-   name: bgg-app-po
+   name: bggapp-po
    labels:
-    name: bgg-app-po
+    name: bggapp-po
   spec: 
    containers:
-   - name: bgg-app-container
+   - name: bggapp-container
      image: stackupiss/bgg-backend:v2
      imagePullPolicy: IfNotPresent
+     livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 80
      envFrom:
      - configMapRef:
         name: bgg-cm
@@ -38,14 +43,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+ namespace: bggns
  name: bggapp-svc
  labels:
   name: bggapp-svc
- namespace: bggns
 spec:
  type: LoadBalancer
  selector: 
-  name: bgg-app-po
+  name: bggapp-po
  ports:
  - port: 80 
    targetPort: bggapp-port  

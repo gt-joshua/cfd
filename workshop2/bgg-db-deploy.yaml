@@ -2,6 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
+ namespace: bggns
  name: bgg-db-deploy
  labels:
   name: bgg-db-deploy
@@ -28,6 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+ namespace: bggns
  name: bggdb-svc
  labels:
   name: bggdb-svc
