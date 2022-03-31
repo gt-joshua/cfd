@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ namespace: bggns
+ name: data-bggdb-pvc
+ labels: 
+  name: data-bggdb-pvc
+spec:
+ accessModes:
+  - ReadWriteOnce
+ resources:
+  requests:
+   storage: 1Gi
+ storageClassName: do-block-storage
