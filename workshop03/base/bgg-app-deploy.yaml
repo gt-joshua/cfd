@@ -38,6 +38,10 @@ spec:
      ports: 
      - name: bggapp-port 
        containerPort: 3000
+     resources:
+      requests:
+       cpu: 100m
+       memory: 128Mi
 
 ---
 apiVersion: v1
@@ -54,3 +58,28 @@ spec:
  ports:
  - port: 8080
    targetPort: bggapp-port  
+
+
+# ---
+# apiVersion: autoscaling/v2beta2
+# kind: HorizontalPodAutoscaler
+
+# metadata:
+#  namespace: bggns
+#  name: bggapp-hpa
+#  labels:
+#   name: bggapp-hpa
+# spec:
+#  minReplicas: 1
+#  maxReplicas: 4
+#  scaleTargetRef:
+#   apiVersion: apps/v1
+#   kind: Deployment
+#   name: bggapp-deploy
+#  metrics: 
+#   - type: Resource
+#     resource: 
+#      name: cpu
+#      target: 
+#       type: Utilization
+#       averageUtilization: 70

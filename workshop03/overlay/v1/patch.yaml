@@ -12,3 +12,21 @@ spec:
         args:
         - --prefix 
         - /v1
+
+
+#---
+#apiVersion: autoscaling/v2beta2
+#kind: HorizontalPodAutoscaler
+
+#metadata:
+# namespace: bggns
+# name: bggapp-hpa
+#spec:
+# scaleTargetRef:
+# - name: bggapp-deploy
+#   args:
+#   - --prefix
+#   - /v1
+  
+
+
