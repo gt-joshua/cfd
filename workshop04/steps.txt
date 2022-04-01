@@ -1,0 +1,8 @@
+-- create ns
+kubectl create ns wpns
+
+-- bash to db to create database
+kubectl exec wpdb-cluster-mysql-0 -n wpns -ti bash
+mysql -uroot -p
+
+create database wp;
